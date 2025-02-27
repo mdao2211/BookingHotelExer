@@ -18,6 +18,7 @@
     "date-fns": "^3.3.1",
     "events": "^3.3.0",
     "express": "^4.21.2",
+    "jwt-decode": "^4.0.0",
     "lucide-react": "^0.316.0",
     "mysql2": "^3.9.1",
     "nodemon": "^3.1.9",

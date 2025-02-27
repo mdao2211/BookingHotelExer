@@ -23,7 +23,7 @@ type Room = {
 };
 
 const fetchHotel = async (id: string): Promise<Hotel> => {
-  const response = await fetch(`http://localhost:5000/hotel/${id}`);
+  const response = await fetch(`http://localhost:5000/hotels/${id}`);
   const data = await response.json();
   return data;
 };
@@ -74,7 +74,6 @@ export default function HotelPage() {
   } else if (!hotel) {
     return <div className="text-center py-8">Hotel not found</div>;
   }
-
   if (isLoadingRooms || !showData) {
     return (
       <div className="flex items-center justify-center h-screen w-full">
@@ -130,7 +129,7 @@ export default function HotelPage() {
         Available Rooms
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {rooms.map((room) => (
+        {rooms?.map((room) => (
           <div
             key={room.roomno}
             className="bg-white rounded-lg shadow-lg overflow-hidden transition-all hover:scale-105 hover:shadow-xl duration-300">
