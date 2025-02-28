@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebook } from "react-icons/fa";
+import { useAuth } from "../hooks/useAuth"; // Import hook dùng AuthContext
 
 type FormData = {
   email: string;
@@ -17,31 +18,15 @@ export default function SignInPage() {
   } = useForm<FormData>();
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const navigate = useNavigate();
+  const { signIn } = useAuth(); // Sử dụng signIn từ context
 
   const onSubmit = async (data: FormData) => {
     try {
-      const response = await fetch("http://localhost:5000/auth/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
-
-      const result = await response.json();
-      if (!response.ok) {
-        setErrorMessage(result.message || "Đăng nhập thất bại");
-      } else {
-        // Lưu token vào localStorage
-        localStorage.setItem("jwtToken", result.access_token);
-        setErrorMessage(null);
-        // Chuyển hướng về trang chủ
-        navigate("/");
-        window.location.reload();
-      }
+      await signIn(data.email, data.password);
+      navigate("/");
+      window.location.reload();
     } catch (error) {
-      console.error("Error during login:", error);
-      setErrorMessage("Đã xảy ra lỗi, vui lòng thử lại sau.");
+      setErrorMessage("Đăng nhập thất bại");
     }
   };
 
