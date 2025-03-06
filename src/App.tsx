@@ -8,6 +8,7 @@ import Layout from "./components/Layout";
 import AuthProvider from "./providers/AuthProvider";
 import SignInPage from "./pages/SignInPage";
 import SignUpPage from "./pages/SignUpPage";
+import ChatPage from "./pages/ChatPage";
 
 const queryClient = new QueryClient();
 
@@ -22,6 +23,8 @@ function App() {
               <Route path="/hotels/:id" element={<HotelPage />} />
               <Route path="/signin" element={<SignInPage />} />
               <Route path="/signup" element={<SignUpPage />} />
+              <Route path="/chat-page" element={<ChatPage />} />
+
 
               {/* <Route path="/book/:roomId" element={<BookingPage />} /> */}
             </Routes>

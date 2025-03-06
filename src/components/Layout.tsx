@@ -17,18 +17,18 @@ export default function Layout({ children }: LayoutProps) {
             <Link to="/" className="text-xl font-bold text-blue-600">
               Booking.com
             </Link>
-            <div>
+            <div className="flex items-center gap-4">
               {user ? (
-                <div className="flex items-center gap-4">
+                <>
                   <span className="text-gray-600">Xin chào, {user.email}</span>
                   <button
                     onClick={signOut}
                     className="px-4 py-1 bg-red-500 text-white rounded hover:bg-red-600">
                     Sign Out
                   </button>
-                </div>
+                </>
               ) : (
-                <div className="flex gap-2">
+                <>
                   <Link
                     to="/signup"
                     className="px-4 py-1 bg-blue-600 text-white rounded hover:bg-blue-700">
@@ -39,8 +39,13 @@ export default function Layout({ children }: LayoutProps) {
                     className="px-4 py-1 bg-blue-600 text-white rounded hover:bg-blue-700">
                     Sign In
                   </Link>
-                </div>
+                </>
               )}
+              <Link
+                to="/chat-page"
+                className="px-4 py-1 bg-blue-600 text-white rounded hover:bg-blue-700">
+                Chat With Community
+              </Link>
             </div>
           </div>
         </div>
